@@ -10,4 +10,7 @@ public struct GridPosition : IEquatable<GridPosition>
     public override string ToString() => $"x: {x} z: {z}";
     public static bool operator ==(GridPosition a, GridPosition b) => a.x == b.x && a.z == b.z;
     public static bool operator !=(GridPosition a, GridPosition b) => !(a == b);
+    public static GridPosition operator +(GridPosition a, GridPosition b) => new GridPosition(a.x + b.x, a.z + b.z);
+    public static GridPosition operator -(GridPosition a, GridPosition b) => new GridPosition(a.x - b.x, a.z - b.z);
+
 }
