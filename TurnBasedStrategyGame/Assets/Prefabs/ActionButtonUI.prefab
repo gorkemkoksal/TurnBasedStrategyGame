@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 1754696749736360216}
   button: {fileID: 841763307602831595}
-  actionSelectedVisualTransform: {fileID: 4775905920944207271}
+  selectedGameObject: {fileID: 4775905920944207271}
 --- !u!1 &4775905920944207271
 GameObject:
   m_ObjectHideFlags: 0

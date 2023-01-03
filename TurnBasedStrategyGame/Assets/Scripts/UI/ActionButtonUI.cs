@@ -8,7 +8,7 @@ public class ActionButtonUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textMeshPro;
     [SerializeField] private Button button;
-    [SerializeField] private GameObject actionSelectedVisualTransform;
+    [SerializeField] private GameObject selectedGameObject;
 
     private BaseAction baseAction;
 
@@ -22,6 +22,6 @@ public class ActionButtonUI : MonoBehaviour
     public void UpdateSelectedVisual()
     {
         BaseAction selectedBaseAction = UnitActionSystem.Instance.GetSelectedAction();
-        actionSelectedVisualTransform.SetActive(selectedBaseAction==baseAction);
+        selectedGameObject.SetActive(selectedBaseAction == baseAction);
     }
 }

@@ -13,8 +13,10 @@ public class UnitActionSystemUI : MonoBehaviour
     void Start()
     {
         UnitActionSystem.Instance.OnSelectedUnitChange += CreateUnitActionButtons;
+        UnitActionSystem.Instance.OnSelectedUnitChange += UpdateSelectedVisual;
         UnitActionSystem.Instance.OnSelectedActionChange += UpdateSelectedVisual;
         UnitActionSystem.Instance.OnBusyChanged += HideShowButtonsForBusyState;
+        
         CreateUnitActionButtons();
         UpdateSelectedVisual();
     }
@@ -32,8 +34,8 @@ public class UnitActionSystemUI : MonoBehaviour
         {
             Transform actionButtonTransform = Instantiate(actionButtonPrefab, actionButtonContainerTransform);
             ActionButtonUI actionButtonUI = actionButtonTransform.GetComponent<ActionButtonUI>();
-            actionButtonUIList.Add(actionButtonUI);
             actionButtonUI.SetBaseAction(baseAction);
+            actionButtonUIList.Add(actionButtonUI);
         }
     }
     private void UpdateSelectedVisual()

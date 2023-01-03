@@ -16,21 +16,19 @@ public class SpinAction : BaseAction
         totalSpinAmount += spinAddAmount;
         if (totalSpinAmount >= 360)
         {
-            isActive = false;
-            onActionComplete();
+            ActionEnd();
         }
     }
-    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
-    {
-        isActive = true;
-        totalSpinAmount = 0f;
-        this.onActionComplete = onActionComplete;
-    }
     public override string GetActionName() => "Spin";
-
     public override List<GridPosition> GetValidActionGridPositionList()
     {
         GridPosition unitGridPosition = unit.GetGridPosition();
         return new List<GridPosition> { unitGridPosition };
     }
+    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
+    {
+        ActionStart(onActionComplete);
+        totalSpinAmount = 0f;
+    }
+
 }

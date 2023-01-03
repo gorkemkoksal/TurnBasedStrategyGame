@@ -33,8 +33,7 @@ public class MoveAction : BaseAction
         else
         {
             unitAnimator.SetBool(walkingHash, false);
-            isActive = false;
-            onActionComplete();
+            ActionEnd();
         }
 
         var rotationSpeed = 10f;
@@ -42,8 +41,7 @@ public class MoveAction : BaseAction
     }
     public override void TakeAction(GridPosition gridPosition,Action onActionComplete)
     {
-        this.onActionComplete=onActionComplete;
-        isActive = true;
+        ActionStart(onActionComplete);
         targetPosition = GridLevel.Instance.GetWorldPosition(gridPosition);
     }
 
