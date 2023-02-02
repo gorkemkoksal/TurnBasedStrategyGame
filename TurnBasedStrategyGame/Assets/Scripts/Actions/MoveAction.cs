@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class MoveAction : BaseAction
 {
-    [SerializeField] private Animator unitAnimator;
+    public event Action OnStartMoving;
+    public event Action OnStopMoving;
+
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private int maxMoveDistance = 4;
 
     private Vector3 targetPosition;
-
-    private readonly int walkingHash = Animator.StringToHash("IsWalking");
     protected override void Awake()
     {
         base.Awake();
@@ -28,21 +28,21 @@ public class MoveAction : BaseAction
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
-            unitAnimator.SetBool(walkingHash, true);
         }
         else
         {
-            unitAnimator.SetBool(walkingHash, false);
+            OnStopMoving?.Invoke();
             ActionEnd();
         }
 
         var rotationSpeed = 10f;
         transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotationSpeed);
     }
-    public override void TakeAction(GridPosition gridPosition,Action onActionComplete)
+    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        ActionStart(onActionComplete);
         targetPosition = GridLevel.Instance.GetWorldPosition(gridPosition);
+        OnStartMoving?.Invoke();
+        ActionStart(onActionComplete);
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()
@@ -68,4 +68,13 @@ public class MoveAction : BaseAction
         return validGridPositionList;
     }
     public override string GetActionName() => "Move";
+    public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
+    {
+        int targetCountAtGridPosition = unit.GetAction<ShootAction>().GetTargetCountAtPosition(gridPosition);
+        return new EnemyAIAction
+        {
+            GridPosition = gridPosition,
+            ActionValue = targetCountAtGridPosition * 10,
+        };
+    }
 }

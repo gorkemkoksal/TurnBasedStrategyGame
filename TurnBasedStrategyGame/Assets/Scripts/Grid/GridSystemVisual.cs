@@ -12,13 +12,9 @@ public class GridSystemVisual : MonoBehaviour
     {
         Instance = this;
     }
-    private void Update()
-    {
-        UpdateGridVisual();
-    }
     private void Start()
     {
-      //  UnitActionSystem.Instance.OnBusyChanged += ShowHideGrid;   //ben ekledim
+        //  UnitActionSystem.Instance.OnBusyChanged += ShowHideGrid;   //ben ekledim
 
         gridSystemVisualSingleArray = new GridSystemVisualSingle[
             GridLevel.Instance.GetWidth(),
@@ -36,7 +32,19 @@ public class GridSystemVisual : MonoBehaviour
                 gridSystemVisualSingleArray[x, z] = gridSystemVisualSingleTransform.GetComponent<GridSystemVisualSingle>();
             }
         }
+        UnitActionSystem.Instance.OnSelectedActionChange += UnitActionSystem_OnSelectedActionChange;
+        GridLevel.Instance.OnAnyUnitMovedGridPosition += GridLevel_OnAnyUnitMovedGridPosition;
+        UpdateGridVisual();
     }
+    private void UnitActionSystem_OnSelectedActionChange() 
+    { 
+        UpdateGridVisual();
+    }
+    private void GridLevel_OnAnyUnitMovedGridPosition()
+    {
+        UpdateGridVisual();
+    }
+
     public void HideAllGridPositions()
     {
         for (int x = 0; x < GridLevel.Instance.GetWidth(); x++)
