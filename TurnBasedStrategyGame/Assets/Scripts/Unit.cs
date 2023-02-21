@@ -89,7 +89,6 @@ public class Unit : MonoBehaviour
         Destroy(gameObject);
 
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
-
     }
     public float GetHealthNormalized() => healthSystem.GetHealthNormalized();
 }

@@ -2910,6 +2910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4067139419598821666}
+  - component: {fileID: 166828055563245531}
   m_Layer: 7
   m_Name: UnitRagdollEnemy
   m_TagString: Untagged
@@ -2933,6 +2934,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &166828055563245531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067139419598821667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07aa2512821d10b408e6488f09202f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdollRootBone: {fileID: 4067139419466046707}
 --- !u!1 &4067139419683702222
 GameObject:
   m_ObjectHideFlags: 0

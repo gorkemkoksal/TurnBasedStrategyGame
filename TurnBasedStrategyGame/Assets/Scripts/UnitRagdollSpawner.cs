@@ -17,9 +17,7 @@ public class UnitRagdollSpawner : MonoBehaviour
     {
         Transform ragdollTransform = Instantiate(ragdollPrefab, transform.position, transform.rotation);
         UnitRagdoll unitRagdoll = ragdollTransform.GetComponent<UnitRagdoll>();
-        
-        //unitRagdoll.deneme();
-        //unitRagdoll.Setup(originalRootBone);
+        unitRagdoll.Setup(originalRootBone);
     }
     
 }

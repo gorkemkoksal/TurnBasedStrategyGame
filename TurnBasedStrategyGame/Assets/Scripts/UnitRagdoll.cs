@@ -37,8 +37,4 @@ public class UnitRagdoll : MonoBehaviour
             ApplyExplosionToRagdoll(child, explosionForce, explosionPosition, explosionRange);
         }
     }
-    public void deneme()  //
-    {
-        print("nasi calismaz");
-    }
 }
