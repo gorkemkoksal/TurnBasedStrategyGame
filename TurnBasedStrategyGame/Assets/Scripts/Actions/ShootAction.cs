@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class ShootAction : BaseAction
 {
     public event Action<Unit> OnShoot;
+    [SerializeField] private LayerMask obstaclesLayerMask;
     private enum State
     {
         Aiming,
@@ -96,6 +97,15 @@ public class ShootAction : BaseAction
 
                 Unit targetUnit = GridLevel.Instance.GetUnitOnGridPosition(testGridPosition);
                 if (targetUnit.IsEnemy() == unit.IsEnemy()) continue;
+
+                var unitWorldPosition = GridLevel.Instance.GetWorldPosition(unitGridPosition);
+                var shootDir=(targetUnit.GetWorldPosition()-unitWorldPosition).normalized;
+                var unitShoulderHeight = 1.7f;
+                if(Physics.Raycast(unitWorldPosition + Vector3.up * unitShoulderHeight, shootDir,
+                    Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()), obstaclesLayerMask))
+                {
+                    continue;
+                }
 
                 validGridPositionList.Add(testGridPosition);
             }
