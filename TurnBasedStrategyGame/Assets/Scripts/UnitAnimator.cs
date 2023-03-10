@@ -19,7 +19,11 @@ public class UnitAnimator : MonoBehaviour
         if (TryGetComponent<ShootAction>(out ShootAction shootAction))
         {
             shootAction.OnShoot += ShootAction_OnShoot;
-
+        }
+        if (TryGetComponent<SwordAction>(out SwordAction swordAction))
+        {
+            swordAction.OnSwordActionStarted += SwordAction_OnSwordActionStarted;
+            swordAction.OnSwordActionCompleted += SwordAction_OnSwordActionCompleted;
         }
     }
     private void MoveAction_OnStartMoving()
@@ -41,5 +45,13 @@ public class UnitAnimator : MonoBehaviour
         targetUnitShootAtPosition.y=shootPointTransform.position.y;
         
         bulletProjectile.Setup(targetUnitShootAtPosition);
+    }
+    private void SwordAction_OnSwordActionStarted()
+    {
+        animator.SetTrigger("SwordSlash");
+    }
+    private void SwordAction_OnSwordActionCompleted()
+    {
+
     }
 }

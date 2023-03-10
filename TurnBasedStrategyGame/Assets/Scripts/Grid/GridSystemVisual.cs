@@ -36,8 +36,8 @@ public class GridSystemVisual : MonoBehaviour
         GridLevel.Instance.OnAnyUnitMovedGridPosition += GridLevel_OnAnyUnitMovedGridPosition;
         UpdateGridVisual();
     }
-    private void UnitActionSystem_OnSelectedActionChange() 
-    { 
+    private void UnitActionSystem_OnSelectedActionChange()
+    {
         UpdateGridVisual();
     }
     private void GridLevel_OnAnyUnitMovedGridPosition()

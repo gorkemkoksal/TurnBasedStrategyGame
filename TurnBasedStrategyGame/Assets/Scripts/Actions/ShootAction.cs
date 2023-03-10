@@ -68,7 +68,9 @@ public class ShootAction : BaseAction
     private void Shoot()
     {
         OnShoot?.Invoke(targetUnit);
-        targetUnit.Damage(40);                                            /////////////////////////////////////////////////////////////////////
+        ScreenShake.Instance.Shake();
+
+        targetUnit.Damage(40);                              
     }
     public override string GetActionName() => "Shoot";
     public override List<GridPosition> GetValidActionGridPositionList()
